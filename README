@@ -1,0 +1,60 @@
+We can create shapes in canvas, but what if we want to create them slowly so that the user is able to see them being created?
+This is the sole purpose of this library & I developed this during my intern at Educational Initiatives, Ahmedabad.
+
+The following are the functions available in the library: 
+(See index.html for example of the usage of the library)
+These functions are called as canvas_element.function_name(compulsory parameters,{optional parameters})  (as in jQueryUI)
+
+1. canvas_element.animateLine: used to draw a Line slowly. The available parameters are:
+
+(x1,y1,x2,y2)-> (compulsory parameters) starting & end coordinates of the line.
+lineWidth-> width of line (default:1)
+lineColour-> colour of line (default:black)
+divisions-> number of divisions in which the line will be drawn (default:100)
+totalTime-> time in which the line will be drawn in seconds (default:1s)
+start-> function to be called when the drawing is started
+draw-> finction to be called while drawing the line
+stop-> function to be called when the line has been drawn i.e. at the end
+
+
+2. canvas_element.animateRectangle: used to draw a Rectangle slowly. The available parameters are:
+
+(x1,y1,x2,y2)-> (compulsory parameters) starting & its oppposite vertex of the rectangle.
+direction-> direction of drawing, specify true if anticlockwise (default:clockwise)
+lineWidth-> width of line (default:1)
+lineColour-> colour of line (default:black)
+divisions-> number of divisions in which the line will be drawn
+totalTime-> time in which the rectangle will be drawn in seconds
+fill-> should the rectangle be filled with colour before or after drawing the outline, ignore if not to be filled (fillBefore & fillAfter are the available options)
+fillColour-> colour to be filled with
+start-> function to be called when the drawing is started
+draw-> finction to be called while drawing the rectangle
+stop-> function to be called when the rectangle has been drawn i.e. at the end
+
+
+3. canvas_element.animateTriangle: used to draw a Triangle slowly. The available parameters are:
+
+(x1,y1,x2,y2,x3,y3)-> (compulsory parameters) the vertices of the traingle in the order in which they would be drawn.
+lineWidth-> width of line (default:1)
+lineColour-> colour of line (default:black)
+divisions-> number of divisions in which the line will be drawn
+totalTime-> time in which the triangle will be drawn in seconds
+fill-> should the triangle be filled with colour before or after drawing the outline, ignore if not to be filled (fillBefore & fillAfter are the available options)
+fillColour-> colour to be filled with
+start-> function to be called when the drawing is started
+draw-> finction to be called while drawing the triangle
+stop-> function to be called when the triangle has been drawn i.e. at the end
+
+
+4. canvas_element.animateCircle: used to draw a Circle slowly. The available parameters are:
+
+(x,y,r)-> (compulsory parameters) the coordinates of the centre & radius of the circle.
+lineWidth-> width of line (default:1)
+lineColour-> colour of line (default:black)
+divisions-> number of divisions in which the line will be drawn
+totalTime-> time in which the circle will be drawn in seconds
+fill-> should the circle be filled with colour before or after drawing the outline, ignore if not to be filled (fillBefore & fillAfter are the available options)
+fillColour-> colour to be filled with
+start-> function to be called when the drawing is started
+draw-> finction to be called while drawing the circle
+stop-> function to be called when the cirle has been drawn i.e. at the end
