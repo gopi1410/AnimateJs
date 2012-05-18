@@ -1,8 +1,17 @@
 /****************************************************************************
-PARAMETERS: 
+PARAMETERS:-
+Line: lineWidth, lineColour, divisions, totalTime, start, draw, stop
+Rectangle: direction, lineWidth, lineColour, divisions, totalTime, start, draw, stop
+Triangle: lineWidth, lineColour, divisions, totalTime, start, draw, stop
+Circle: lineWidth, lineColour, divisions, totalTime, fill, fillColour, start, draw, stop
 
+NOTE THAT divisions/totalTime should not exceed:-
+100 for line
+25 for rectangle
+33 for triangle
+100 for circle
 
-NOTE THAT divisions/totalTime should not exceed 
+FOR REDUCING FILE SIZE USE JSCOMPRESS.COM TO MINIFY THE CODE.
 *****************************************************************************/
 
 HTMLCanvasElement.prototype.animateLine=function(x1,y1,x2,y2,params) {

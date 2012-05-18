@@ -1,11 +1,11 @@
 <html>
 <head>
-	<script type="text/javascript" src="animate.js"></script>
+	<script type="text/javascript" src="animate.min.js"></script>
 	<script>
 	function start()
 	{
 		var id=document.getElementById('gopi');
-		/*id.animateLine(0,0,600,400,{'lineColour': 'red', 'lineWidth': 5});
+		/*id.animateLine(0,0,600,400,{'lineColour': 'red', 'lineWidth': 5, 'totalTime':5, 'draw': function() {alert('hi');}});
 		var c=document.createElement('canvas');
 		c.setAttribute("id", "test");
 		c.setAttribute("width", 620);
@@ -14,7 +14,7 @@
 		document.getElementById('foo').appendChild(c);*/
 		//id.animateRect(10,10,500,100,{'lineWidth':10, 'lineColour':"green", 'divisions':50, 'totalTime':2, 'fill': 'fillAfter', 'fillColour': 'white', 'start': function() { alert('Started task...'); }, 'stop': function() { alert('task completed'); } });
 		//id.animateTriangle(200,10,100,100,400,120,{'fill': 'fillAfter' ,'fillColour': 'green' ,'lineColour': 'red', 'lineWidth': 5, 'divisions':40, 'totalTime':2, 'start': function() { alert('Started task...'); }, 'stop': function() { alert('task completed'); } })
-		id.animateCircle(200,200,100,{'lineColour': 'red', 'divisions':100, 'totalTime':1, 'fill': 'fillAfter', 'fillColour': 'yellow'});
+		id.animateCircle(200,200,100);
 		//id.prompt()
 	}
 	</script>
