@@ -28,6 +28,17 @@ draw-> finction to be called while drawing the lines
 stop-> function to be called when all the lines has been drawn i.e. at the end
 
 
+3. canvas_element.animatePoints: used to join pair of points to animate different lines. The available parameters are:
+
+(pointsArr)-> (compulsory) Nx2 array of n point coordinates.
+lineWidth-> width of line (default:1)
+lineColour-> colour of line (default:black)
+duration-> time in which each line will be drawn in seconds (default:1s)
+start-> function to be called when the drawing is started
+draw-> finction to be called while drawing the lines
+stop-> function to be called when all the lines has been drawn i.e. at the end
+
+
 3. canvas_element.animateRectangle: used to draw a Rectangle slowly. The available parameters are:
 
 (x1,y1,x2,y2)-> (compulsory parameters) starting & its oppposite vertex of the rectangle.

@@ -5,6 +5,7 @@
 	function start()
 	{
 		var pointArr=[[10,10],[500,100],[600,400],[10,10],[0,0],[300,300],[50,200]];
+		var pointArr1=[[10,10],[500,100],[600,400],[10,10],[0,0],[300,300]];
 		var id=document.getElementById('gopi');
 		//id.animateLine(0,0,600,400,{'lineColour': 'red', 'lineWidth': 5, 'duration':5, 'draw': function() {alert('hi');}});
 		/*var c=document.createElement('canvas');
@@ -17,7 +18,8 @@
 		//id.animateTriangle(200,10,100,100,400,120,{'fill': 'fillAfter' ,'fillColour': 'green' ,'lineColour': 'red', 'lineWidth': 5, 'divisions':40, 'duration':2, 'start': function() { alert('Started task...'); }, 'stop': function() { alert('task completed'); } })
 		//id.animateTriangle(200,10,100,100,400,120);
 		//id.animateCircle(200,200,100);
-		id.animateLines(pointArr,{'lineColour': 'red', 'lineWidth':4, 'duration':1, 'stop': function() {alert('completed');}});
+		//id.animateLines(pointArr,{'lineColour': 'red', 'lineWidth':4, 'duration':1, 'stop': function() {alert('completed');}});
+		id.animatePoints(pointArr1,{'lineColour': 'red', 'lineWidth':4, 'duration':1, 'stop': function() {alert('completed');}})
 	}
 	</script>
 </head>

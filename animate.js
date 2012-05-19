@@ -5,6 +5,7 @@ Lines: lineWidth, lineColour, duration, start, draw, stop
 Rectangle: direction, lineWidth, lineColour, divisions, duration, fill, fillColour start, draw, stop
 Triangle: lineWidth, lineColour, divisions, duration, fill, fillColour, start, draw, stop
 Circle: lineWidth, lineColour, divisions, duration, fill, fillColour, start, draw, stop
+Points: lineWidth, lineColour, duration, start, draw, stop
 
 NOTE THAT divisions/duration should not exceed:-
 100 for line
@@ -27,6 +28,12 @@ HTMLCanvasElement.prototype.animateLines=function(pointArr,params) {
 		initLines(this,pointArr,params.lineColour,params.lineWidth,params.duration,params.start,params.draw,params.stop);
 	else
 		initLines(this,pointArr);
+};
+HTMLCanvasElement.prototype.animatePoints=function(pointArr,params) {
+	if(params)
+		initPoints(this,pointArr,params.lineColour,params.lineWidth,params.duration,params.start,params.draw,params.stop);
+	else
+		initPoints(this,pointArr);
 };
 HTMLCanvasElement.prototype.animateRect=function(x1,y1,x2,y2,params) {
 	if(params)
@@ -97,7 +104,6 @@ function initLines(id,pointArr,lineColor,lineWidth,duration,start,draw,stop)
 	{
 		draw=function() {};
 	}
-	var firstPoint=pointArr[0];
 	function drawLines(pointArr)
 	{
 		var l=pointArr.length;
@@ -114,6 +120,25 @@ function initLines(id,pointArr,lineColor,lineWidth,duration,start,draw,stop)
 	if(start)
 		start();
 	drawLines(pointArr);
+}
+function initPoints(id,pointArr,lineColor,lineWidth,duration,start,draw,stop)
+{
+	function drawPoints(pointArr)
+	{
+		var l=pointArr.length;
+		if(l==0)
+		{
+			if(stop)
+				stop();
+			return;
+		}
+		var pointOne=pointArr[0];
+		var pointTwo=pointArr[1];
+		id.animateLine(pointOne[0], pointOne[1], pointTwo[0], pointTwo[1], {'lineColour': lineColor, 'lineWidth': lineWidth, 'duration':duration, 'draw': draw, 'stop': function() { drawPoints(pointArr.slice(2)); }});
+	}
+	if(start)
+		start();
+	drawPoints(pointArr);
 }
 function initCircle(id,x,y,r,lineColor,lineWidth,interval,totalTime,fill,fillColor,start,draw,stop)
 {
