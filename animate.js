@@ -1,65 +1,48 @@
 /****************************************************************************
-Copyright (c) 2012 Gopi Ramena
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files , to deal in the Software without restriction, 
-including without limitation the rights to use, copy, 
-modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-****************************************************************************/
-
-/****************************************************************************
 PARAMETERS:-
-Line: lineWidth, lineColour, divisions, totalTime, start, draw, stop
-Rectangle: direction, lineWidth, lineColour, divisions, totalTime, start, draw, stop
-Triangle: lineWidth, lineColour, divisions, totalTime, start, draw, stop
-Circle: lineWidth, lineColour, divisions, totalTime, fill, fillColour, start, draw, stop
+Line: lineWidth, lineColour, divisions, duration, start, draw, stop
+Lines: lineWidth, lineColour, duration, start, draw, stop
+Rectangle: direction, lineWidth, lineColour, divisions, duration, fill, fillColour start, draw, stop
+Triangle: lineWidth, lineColour, divisions, duration, fill, fillColour, start, draw, stop
+Circle: lineWidth, lineColour, divisions, duration, fill, fillColour, start, draw, stop
 
-NOTE THAT divisions/totalTime should not exceed:-
+NOTE THAT divisions/duration should not exceed:-
 100 for line
 25 for rectangle
 33 for triangle
 100 for circle
 
 FOR REDUCING FILE SIZE USE JSCOMPRESS.COM TO MINIFY THE CODE.
+-Gopi Ramena (author)
 *****************************************************************************/
 
 HTMLCanvasElement.prototype.animateLine=function(x1,y1,x2,y2,params) {
 	if(params)
-		initLine(this,x1,y1,x2,y2,params.lineColour,params.lineWidth,params.divisions,params.totalTime,params.start,params.draw,params.stop);
+		initLine(this,x1,y1,x2,y2,params.lineColour,params.lineWidth,params.divisions,params.duration,params.start,params.draw,params.stop);
 	else
 		initLine(this,x1,y1,x2,y2);
 };
+HTMLCanvasElement.prototype.animateLines=function(pointArr,params) {
+	if(params)
+		initLines(this,pointArr,params.lineColour,params.lineWidth,params.duration,params.start,params.draw,params.stop);
+	else
+		initLines(this,pointArr);
+};
 HTMLCanvasElement.prototype.animateRect=function(x1,y1,x2,y2,params) {
 	if(params)
-		initRect(this,x1,y1,x2,y2,params.direction,params.lineColour,params.lineWidth,params.divisions,params.totalTime,params.fill,params.fillColour,params.start,params.draw,params.stop);
+		initRect(this,x1,y1,x2,y2,params.direction,params.lineColour,params.lineWidth,params.divisions,params.duration,params.fill,params.fillColour,params.start,params.draw,params.stop);
 	else
 		initRect(this,x1,y1,x2,y2);
 };
 HTMLCanvasElement.prototype.animateTriangle=function(x1,y1,x2,y2,x3,y3,params) {
 	if(params)
-		initTriangle(this,x1,y1,x2,y2,x3,y3,params.lineColour,params.lineWidth,params.divisions,params.totalTime,params.fill,params.fillColour,params.start,params.draw,params.stop);
+		initTriangle(this,x1,y1,x2,y2,x3,y3,params.lineColour,params.lineWidth,params.divisions,params.duration,params.fill,params.fillColour,params.start,params.draw,params.stop);
 	else
 		initTriangle(this,x1,y1,x2,y2,x3,y3);
 };
 HTMLCanvasElement.prototype.animateCircle=function(x,y,r,params) {
 	if(params)
-		initCircle(this,x,y,r,params.lineColour,params.lineWidth,params.divisions,params.totalTime,params.fill,params.fillColour,params.start,params.draw,params.stop);
+		initCircle(this,x,y,r,params.lineColour,params.lineWidth,params.divisions,params.duration,params.fill,params.fillColour,params.start,params.draw,params.stop);
 	else
 		initCircle(this,x,y,r);
 };
@@ -107,6 +90,30 @@ function initLine(id,x1,y1,x2,y2,lineColor,lineWidth,interval,totalTime,start,dr
 				stop();
 		}
 	}, (1000*totalTime/interval));
+}
+function initLines(id,pointArr,lineColor,lineWidth,duration,start,draw,stop)
+{
+	if(!draw)
+	{
+		draw=function() {};
+	}
+	var firstPoint=pointArr[0];
+	function drawLines(pointArr)
+	{
+		var l=pointArr.length;
+		if(l==1)
+		{
+			if(stop)
+				stop();
+			return;
+		}
+		var pointOne=pointArr[0];
+		var pointTwo=pointArr[1];
+		id.animateLine(pointOne[0], pointOne[1], pointTwo[0], pointTwo[1], {'lineColour': lineColor, 'lineWidth': lineWidth, 'duration':duration, 'draw': draw, 'stop': function() { drawLines(pointArr.slice(1)); }});
+	}
+	if(start)
+		start();
+	drawLines(pointArr);
 }
 function initCircle(id,x,y,r,lineColor,lineWidth,interval,totalTime,fill,fillColor,start,draw,stop)
 {
