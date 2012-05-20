@@ -1,0 +1,28 @@
+<html>
+<head>
+<script type="text/javascript" src="animate.min.js"></script>
+<script type="text/javascript">
+var canvas,w,h;
+function start()
+{
+	canvas=document.getElementById('gopi');
+	w=canvas.width, h=canvas.height;
+	canvas.animateRect(0,0,w,h,{'start': function() {document.getElementById('msg').innerHTML="Welcome to the demo!<br/>Demo started."}, 'stop': function() {draw_lines();}});
+}
+function draw_lines()
+{
+	pointsArr=[[w/2,h],[w/2,0],[w/2,h/2],[w,h/2],[3*w/4,0],[3*w/4,h/2],[w/2,h/4],[3*w/4,h/4],[5*w/8,h/4],[5*w/8,h/2],[5*w/8,3*h/8],[w/2,3*h/8],[9*w/16,h/2],[9*w/16,3*h/8]];
+	canvas.animatePoints(pointsArr,{'stop': function() {document.getElementById('msg').innerHTML="Demo completed!"}, 'start': function() {document.getElementById('msg').innerHTML="Rectangle drawn! Drawing lines!!";}});
+}
+</script>
+</head>
+<body onload="start()" align="center">
+<br/><br/>
+<canvas id="gopi" height="300" width="485">
+Sorry kiddo, you must have a canvas supported browser!
+</canvas>
+<br/><br/>
+<div id="msg">
+</div>
+</body>
+</html>
