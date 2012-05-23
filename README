@@ -39,7 +39,7 @@ draw-> finction to be called while drawing the lines
 stop-> function to be called when all the lines has been drawn i.e. at the end
 
 
-3. canvas_element.animateRectangle: used to draw a Rectangle slowly. The available parameters are:
+4. canvas_element.animateRectangle: used to draw a Rectangle slowly. The available parameters are:
 
 (x1,y1,x2,y2)-> (compulsory parameters) starting & its oppposite vertex of the rectangle.
 direction-> direction of drawing, specify true if anticlockwise (default:clockwise)
@@ -54,7 +54,7 @@ draw-> finction to be called while drawing the rectangle
 stop-> function to be called when the rectangle has been drawn i.e. at the end
 
 
-4. canvas_element.animateTriangle: used to draw a Triangle slowly. The available parameters are:
+5. canvas_element.animateTriangle: used to draw a Triangle slowly. The available parameters are:
 
 (x1,y1,x2,y2,x3,y3)-> (compulsory parameters) the vertices of the traingle in the order in which they would be drawn.
 lineWidth-> width of line (default:1)
@@ -68,7 +68,7 @@ draw-> finction to be called while drawing the triangle
 stop-> function to be called when the triangle has been drawn i.e. at the end
 
 
-5. canvas_element.animateCircle: used to draw a Circle slowly. The available parameters are:
+6. canvas_element.animateCircle: used to draw a Circle slowly. The available parameters are:
 
 (x,y,r)-> (compulsory parameters) the coordinates of the centre & radius of the circle.
 lineWidth-> width of line (default:1)
