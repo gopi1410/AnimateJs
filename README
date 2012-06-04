@@ -39,7 +39,7 @@ draw-> finction to be called while drawing the lines
 stop-> function to be called when all the lines has been drawn i.e. at the end
 
 
-4. canvas_element.animateRectangle: used to draw a Rectangle slowly. The available parameters are:
+4. canvas_element.animateRect: used to draw a Rectangle slowly. The available parameters are:
 
 (x1,y1,x2,y2)-> (compulsory parameters) starting & its oppposite vertex of the rectangle.
 direction-> direction of drawing, specify true if anticlockwise (default:clockwise)
