@@ -1,29 +1,4 @@
 /****************************************************************************
-Copyright (c) 2012 Gopi Ramena
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files , to deal in the Software without restriction, 
-including without limitation the rights to use, copy, 
-modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-****************************************************************************/
-
-/****************************************************************************
 PARAMETERS:-
 Line: lineWidth, lineColour, divisions, duration, start, draw, stop
 Lines: lineWidth, lineColour, duration, start, draw, stop
@@ -81,8 +56,12 @@ HTMLCanvasElement.prototype.animateCircle=function(x,y,r,params) {
 
 function initLine(id,x1,y1,x2,y2,lineColor,lineWidth,interval,totalTime,start,draw,stop)
 {
-	if(!interval)
+	if(totalTime && !interval) {
+		interval=90*totalTime;
+	}
+	else {
 		interval=100;
+	}
 	if(!totalTime)
 		totalTime=1;
 	var canvasId=id;
@@ -151,7 +130,7 @@ function initPoints(id,pointArr,lineColor,lineWidth,duration,start,draw,stop)
 	function drawPoints(pointArr)
 	{
 		var l=pointArr.length;
-		if(l==0)
+		if(l===0)
 		{
 			if(stop)
 				stop();
@@ -170,7 +149,7 @@ function initCircle(id,x,y,r,lineColor,lineWidth,interval,totalTime,fill,fillCol
 	if(!interval)
 		interval=100;
 	if(!totalTime)
-		totalTime=1
+		totalTime=1;
 	var canvasId=id;
 	var context=canvasId.getContext('2d');
 	
@@ -240,35 +219,35 @@ function initRect(id,x1,y1,x2,y2,direction,lineColour,lineWidth,divisions,totalT
 	
 	function drawRectLineClock1()
 	{
-		id.animateLine(x1,y1,x2,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineClock2(); } });
+		id.animateLine(x1,y1,x2,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineClock2(); } });
 	}
 	function drawRectLineClock2()
 	{
-		id.animateLine(x2,y1,x2,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineClock3(); } });
+		id.animateLine(x2,y1,x2,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineClock3(); } });
 	}
 	function drawRectLineClock3()
 	{
-		id.animateLine(x2,y2,x1,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineClock4(); } });
+		id.animateLine(x2,y2,x1,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineClock4(); } });
 	}
 	function drawRectLineClock4()
 	{
-		id.animateLine(x1,y2,x1,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/4), 'draw': draw, 'stop': function() {end();} });
+		id.animateLine(x1,y2,x1,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/4), 'draw': draw, 'stop': function() {end();} });
 	}
 	function drawRectLineAnti1()
 	{
-		id.animateLine(x1,y1,x1,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineAnti2(); } });
+		id.animateLine(x1,y1,x1,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineAnti2(); } });
 	}
 	function drawRectLineAnti2()
 	{
-		id.animateLine(x1,y2,x2,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineAnti3(); } });
+		id.animateLine(x1,y2,x2,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineAnti3(); } });
 	}
 	function drawRectLineAnti3()
 	{
-		id.animateLine(x2,y2,x2,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineAnti4(); } });
+		id.animateLine(x2,y2,x2,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/4), 'draw': draw, 'stop': function() { drawRectLineAnti4(); } });
 	}
 	function drawRectLineAnti4()
 	{
-		id.animateLine(x2,y1,x1,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/4), 'draw': draw, 'stop': function() {end();} });
+		id.animateLine(x2,y1,x1,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/4), 'draw': draw, 'stop': function() {end();} });
 	}
 	if(start)
 		start();
@@ -313,15 +292,15 @@ function initTriangle(id,x1,y1,x2,y2,x3,y3,lineColour,lineWidth,divisions,totalT
 	
 	function drawTrianLine1()
 	{
-		id.animateLine(x1,y1,x2,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/3), 'draw': draw, 'stop': function() { drawTrianLine2(); }});
+		id.animateLine(x1,y1,x2,y2,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/3), 'draw': draw, 'stop': function() { drawTrianLine2(); }});
 	}
 	function drawTrianLine2()
 	{
-		id.animateLine(x2,y2,x3,y3,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/3), 'draw': draw, 'stop': function() { drawTrianLine3(); }});
+		id.animateLine(x2,y2,x3,y3,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/3), 'draw': draw, 'stop': function() { drawTrianLine3(); }});
 	}
 	function drawTrianLine3()
 	{
-		id.animateLine(x3,y3,x1,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'totalTime':(totalTime/3), 'draw': draw, 'stop': function() {end();} });
+		id.animateLine(x3,y3,x1,y1,{ 'lineColour':lineColour, 'lineWidth':lineWidth, 'divisions':divisions, 'duration':(totalTime/3), 'draw': draw, 'stop': function() {end();} });
 	}
 	function end()
 	{
