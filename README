@@ -1,4 +1,4 @@
-We can create shapes in canvas, but what if we want to create them slowly so that the user is able to see them being created?
+We can create shapes in canvas, but what if we want to create them slowly so that the user is able to see them being created??
 This is the sole purpose of this library & I developed this during my intern at Educational Initiatives, Ahmedabad.
 
 The following are the functions available in the library: 
